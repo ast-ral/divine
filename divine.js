@@ -38,17 +38,17 @@ function (context, input) { // target: 0
 	function is_little_endian() {
 		const u32_arr = new Uint32Array(1)
 		u32_arr[0] = 0xdeadc0de
-	
+
 		const view = new DataView(u32_arr.buffer)
-	
+
 		if (view.getUint32(0, true) == 0xdeadc0de) {
 			return true
 		}
-	
+
 		if (view.getUint32(0, false) == 0xdeadc0de) {
 			return false
 		}
-	
+
 		throw new Error("unknown endianness?")
 	}
 

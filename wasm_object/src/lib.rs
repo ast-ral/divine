@@ -13,7 +13,7 @@ fn main() -> Box<RawVec<RawVec<u16>>> {
 			Box::from_raw(target_callback()).to_real_vec()
 		}
 	};
-	
+
 	let out = divine(random, callback);
 	let out: Vec<_> = out.into_iter().map(|v| v.to_raw_vec()).collect();
 	let out = Box::new(out.to_raw_vec());
