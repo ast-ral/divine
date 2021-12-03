@@ -1,0 +1,2 @@
+[alias]
+wasm = ["rustc", "-p", "wasm_object", "--target", "wasm32-unknown-unknown", "--release", "--", "-C", "strip=symbols", "-C", "panic=abort"]

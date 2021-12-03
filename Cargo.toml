@@ -1,0 +1,7 @@
+[workspace]
+members = [
+	"divine",
+	"driver",
+	"interface_rs",
+	"wasm_object",
+]
