@@ -123,8 +123,8 @@ fn divine_fragments(
 	base_len: usize,
 	fragment_count: usize,
 ) -> Vec<Vec<u16>> {
-	let mut minmax_vec: Vec<_> = (0 .. fragment_count).map(|_| (0, base_len)).collect();
-	let mut fragments: Vec<_> = (0 .. fragment_count).map(|_| Vec::new()).collect();
+	let mut minmax_vec = vec![(0, base_len); fragment_count];
+	let mut fragments = vec![Vec::new(); fragment_count];
 
 	while !minmax_vec.iter().all(|k| k.0 == k.1) {
 		let min_bound = 1.0 / corruption_bound as f64;
