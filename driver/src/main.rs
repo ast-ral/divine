@@ -16,10 +16,12 @@ fn main() {
 		&[887, 400],
 	];
 
-	let rng = RefCell::new(RngState::from_state(1337, 420));
-	let random = || rng.borrow_mut().next_random();
+	for i in 0 .. 100 {
+		let rng = RefCell::new(RngState::from_state(0x0123_4567_89ab_cdef, 1337 * i));
+		let random = || rng.borrow_mut().next_random();
 
-	let sim = || sim_fragment_script(&random, &base, 4, fragments);
+		let sim = || sim_fragment_script(&random, &base, 4, fragments);
 
-	dbg!(divine(random, sim));
+		assert_eq!(divine(random, sim), fragments);
+	}
 }

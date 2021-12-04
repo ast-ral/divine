@@ -96,17 +96,12 @@ fn divine_fragment_count(
 			*consistency_map.entry(fragment_index).or_insert_with(|| text.clone()) == text
 		});
 
-		// if a candidate and all its multiples are both consistent and complete
-		// that candidate is the fragment count
-		for candidate in candidates.clone() {
-			let valid = (candidate ..)
-				.step_by(candidate)
-				.take_while(|multiple| candidates.contains(multiple))
-				.all(|multiple| {
-					consistency_maps.get(&multiple).map_or(false, |map| {
-						is_map_complete(map, multiple)
-					})
-				});
+		// If all consistent candidates are both complete and multiples of a
+		// single candidate, that candidate is the fragment count.
+		for &candidate in consistency_maps.keys() {
+			let valid = consistency_maps
+				.iter()
+				.all(|(&k, v)| k % candidate == 0 && is_map_complete(v, k));
 
 			if valid {
 				return candidate;
