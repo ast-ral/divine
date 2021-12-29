@@ -21,7 +21,7 @@ pub fn divine(mut random: impl FnMut() -> f64, mut target: impl FnMut() -> Vec<u
 		base_len,
 	);
 
-	let fragments= divine_fragments(
+	let fragments = divine_fragments(
 		&mut predicted,
 		&mut random,
 		&mut target,
